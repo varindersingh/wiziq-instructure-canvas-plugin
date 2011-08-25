@@ -122,9 +122,11 @@ class WiziqConference < WebConference
 
   def schedule_wiziq_class
 
-    Rails::logger.debug " scheduling class now...conference key is not set }"
+    Rails::logger.debug " scheduling class now...conference key is not set }"    
+    
+    tz_info = ActiveSupport::TimeZone.find_tzinfo @user.time_zone
 
-    @time_zone = config[:time_zone]
+    @time_zone = tz_info.name        
 
     begin
 

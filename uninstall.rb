@@ -1,1 +1,3 @@
-# Uninstall hook code here
+
+#require 'uninstall_wiziq'
+

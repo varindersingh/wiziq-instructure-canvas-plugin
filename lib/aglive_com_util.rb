@@ -23,12 +23,16 @@ class AgliveComUtil
 
   def schedule_class(wiziq_conference)
     
-    Rails::logger.debug " self is #{ self.to_s }"
+    Rails::logger.debug " self is #{ self.to_s }"        
+
+    #zone = ActiveSupport::TimeZone.new wiziq_conference.time_zone
+    
+    time_now = Time.now.in_time_zone wiziq_conference.time_zone
 
     @api_request.add_params(
 
       ParamsSchedule::TITLE => wiziq_conference.title,      
-      ParamsSchedule::START_DATETIME  =>  Time.now.strftime("%m/%d/%Y %H:%M:%S %p"),
+      ParamsSchedule::START_DATETIME  =>  time_now.strftime("%m/%d/%Y %H:%M:%S %p"),
       ParamsSchedule::DESCRIPTION => wiziq_conference.description,
       ParamsSchedule::DURATION => wiziq_conference.duration,
       ParamsSchedule::COURSE_ID => wiziq_conference.context_id,
