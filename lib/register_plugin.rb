@@ -1,6 +1,3 @@
-
-Rails::logger.debug "#{ Time.now } Inside wiziq plugin registration module..Start registering wiziq plugin"
-
 Canvas::Plugin.register('wiziq', :web_conferencing, {
   :name => lambda{ t :name, "Wiziq" },
   :description => lambda{ t :description, "Wiziq virtual classroom" },

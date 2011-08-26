@@ -28,13 +28,14 @@ class AgliveComUtil
     #zone = ActiveSupport::TimeZone.new wiziq_conference.time_zone
     
     time_now = Time.now.in_time_zone wiziq_conference.time_zone
+    duration = 300 if wiziq_conference.duration > 300
 
     @api_request.add_params(
 
       ParamsSchedule::TITLE => wiziq_conference.title,      
       ParamsSchedule::START_DATETIME  =>  time_now.strftime("%m/%d/%Y %H:%M:%S %p"),
       ParamsSchedule::DESCRIPTION => wiziq_conference.description,
-      ParamsSchedule::DURATION => wiziq_conference.duration,
+      ParamsSchedule::DURATION => duration,
       ParamsSchedule::COURSE_ID => wiziq_conference.context_id,
       ParamsSchedule::TIMEZONE => wiziq_conference.time_zone,
       ParamsSchedule::PRESENTER_ID => wiziq_conference.user.uuid,
