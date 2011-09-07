@@ -10,7 +10,7 @@ module WiziqVC
   describe AgliveComUtil do
 
     before(:all) do    
-
+      puts 'Now testing api methods...'
       @class_hash = {
               
         WiziqApiConstants::ParamsSchedule::TITLE => "Wiziq_test_spec_class",
@@ -26,13 +26,14 @@ module WiziqVC
     end
 
     it 'should be able to schedule wiziq class using class api' do
+      puts 'Scheduling test class on wiziq...'
       aglive = AgliveComUtil.new('create')
       wiziq_class = aglive.schedule_class(@class_hash)
       wiziq_class["class_id"].should_not be_empty
     end
 
     it 'should return "1009 - class_id is invalid." when adding attendee list for a random class id.' do
-
+      puts 'Trying to add attendee to a non existing wiziq class.Expecting invalid class_id parameter(1009)...'
       aglive = AgliveComUtil.new('add_attendees')
       attendee_res = aglive.add_attendee_to_session(0, "test_attendee_id", "test_screen_name")
       attendee_res["code"].should == 1009
