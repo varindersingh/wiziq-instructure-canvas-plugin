@@ -1,24 +1,25 @@
+module WiziqVC
 
+  class CryptoHelper
 
-class CryptoHelper
+    attr_reader :signature_base
 
-  attr_reader :signature_base
+    def initialize
 
-  def initialize
-
-     @signature_base = ""
+      @signature_base = ""
      
-  end
+    end
 
-  def add_param(key,value)
+    def add_param(key,value)
 
-    @signature_base += "&" if !@signature_base.empty?
+      @signature_base += "&" if !@signature_base.empty?
 
-    @signature_base << key << "=" << value.to_s if !key.nil? && !value.nil?
+      @signature_base << key << "=" << value.to_s if !key.nil? && !value.nil?
 
-    @signature_base
+      @signature_base
+
+    end
 
   end
 
 end
-

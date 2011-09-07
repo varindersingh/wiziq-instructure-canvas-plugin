@@ -1,0 +1,5 @@
+#This file contains plugin configuration parameters that are read during plugin installation
+
+api_url: http://classapi.wiztest.authordm.com/apimanager.ashx
+access_key: kndxlmt3RJw=
+secret_key: XxLzvbPUE2D/DFY5osT/6g==
