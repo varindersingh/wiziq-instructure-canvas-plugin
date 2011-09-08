@@ -7,7 +7,7 @@ module WiziqVC
 
   describe HttpUtil do
     before(:all) do
-      puts 'Now running https tests...'
+      puts 'Now running http tests...'
     end
 
     it 'should be able to communicate with external url over http' do
