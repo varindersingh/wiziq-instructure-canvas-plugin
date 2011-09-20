@@ -1,7 +1,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper'
 require File.dirname(__FILE__) + '/../lib/aglive_com_util'
-require File.dirname(__FILE__) + '/../lib/wiziq_conference'
+require File.dirname(__FILE__) + '/../app/models/wiziq_conference'
 
 module WiziqVC
 
@@ -37,7 +37,7 @@ module WiziqVC
       aglive = AgliveComUtil.new('add_attendees')
       attendee_res = aglive.add_attendee_to_session(0, "test_attendee_id", "test_screen_name")
       attendee_res["code"].should == 1009
-
+      
     end
   end
 end
