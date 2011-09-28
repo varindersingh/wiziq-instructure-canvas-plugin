@@ -1,4 +1,4 @@
-module WiziqVC
+module Wiziq
 
   class CryptoHelper
 

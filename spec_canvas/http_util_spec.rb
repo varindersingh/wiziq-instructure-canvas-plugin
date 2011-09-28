@@ -3,7 +3,7 @@
 
 require File.dirname(__FILE__) + '/spec_helper'
 
-module WiziqVC
+module Wiziq
 
   describe HttpUtil do
     before(:all) do

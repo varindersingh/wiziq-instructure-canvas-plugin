@@ -1,16 +1,22 @@
-module WiziqVC
+module Wiziq
+  require 'wiziq/plugin_config'
+  require 'wiziq/http_util'
+  require 'wiziq/crypto_helper'
+  require 'wiziq/auth_base'
   
   class BaseRequestBuilder
-
-    include WiziqVC
-    include WiziqVC::WiziqApiConstants
-
+       
     attr_reader :api_method,:api_url,:params_hash,:http_util
     
     def initialize(api_method)
-    
+
+      Rails::logger.debug " base_request_builder init here.............. "
       @api_method = api_method
-      @api_url = PluginConfig.api_url + %{?#{ ParamsAuth::METHOD }=} + @api_method
+      begin
+      @api_url = Wiziq::PluginConfig.new.api_url + %{?#{ ApiConstants::ParamsAuth::METHOD }=} + @api_method
+      rescue => e
+        Rails::logger.debug " Erorr in PluginConfig #{ e }  "
+      end
       @http_util = HttpUtil.new @api_url
       get_auth_params
     
@@ -18,24 +24,26 @@ module WiziqVC
 
     def get_auth_params
 
+      Rails::logger.debug "Entered  get_auth_params "
+
       #access_key = 'G/CFeRhSLI4='
       #secret_key = 'w8hjAKHP3roadSUZxdUFyQ=='
 
       #access_key = 'kndxlmt3RJw='
       #secret_key = 'XxLzvbPUE2D/DFY5osT/6g=='
           
-      access_key = PluginConfig.access_key
-      secret_key = PluginConfig.secret_key
+      access_key = PluginConfig.new.access_key
+      secret_key = PluginConfig.new.secret_key
       
-      @api_url = PluginConfig.api_url + %{?#{ ParamsAuth::METHOD }=} + @api_method
+      #@api_url = PluginConfig.api_url + %{?#{ ApiConstants::ParamsAuth::METHOD }=} + @api_method
       
       time_stamp = get_unix_timestamp
 
       crypto_helper = CryptoHelper.new
 
-      crypto_helper.add_param(ParamsAuth::ACCESS_KEY, access_key)
-      crypto_helper.add_param(ParamsAuth::TIMESTAMP, time_stamp)
-      signature_base = crypto_helper.add_param(ParamsAuth::METHOD, @api_method)
+      crypto_helper.add_param( ApiConstants::ParamsAuth::ACCESS_KEY, access_key)
+      crypto_helper.add_param( ApiConstants::ParamsAuth::TIMESTAMP, time_stamp)
+      signature_base = crypto_helper.add_param( ApiConstants::ParamsAuth::METHOD, @api_method)
 
       auth_base =  AuthBase.new(secret_key,signature_base)
 
@@ -43,9 +51,9 @@ module WiziqVC
           
       common_post_params = {
 
-        ParamsAuth::ACCESS_KEY => access_key,
-        ParamsAuth::TIMESTAMP  => time_stamp,
-        ParamsAuth::SIGNATURE  => signature
+         ApiConstants::ParamsAuth::ACCESS_KEY => access_key,
+         ApiConstants::ParamsAuth::TIMESTAMP  => time_stamp,
+         ApiConstants::ParamsAuth::SIGNATURE  => signature
       }
 
       @http_util.add_params(common_post_params)

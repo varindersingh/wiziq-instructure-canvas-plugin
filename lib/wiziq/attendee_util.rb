@@ -1,4 +1,4 @@
-module WiziqVC
+module Wiziq
   
   class AttendeeUtil
 
@@ -24,7 +24,6 @@ module WiziqVC
       @attendee_xml << %{</attendee_list>}
     
     end
-
 
   end
 end

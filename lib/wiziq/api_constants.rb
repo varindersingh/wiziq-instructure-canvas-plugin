@@ -1,5 +1,5 @@
-module WiziqVC
-  module WiziqApiConstants
+module Wiziq
+  module ApiConstants
   
     module ParamsAuth
 
@@ -155,8 +155,7 @@ module WiziqVC
 
     module  ParamsUpdate;end
 
-    module ParamsCancel;end
-      
+    module ParamsCancel;end      
 
   end
 end

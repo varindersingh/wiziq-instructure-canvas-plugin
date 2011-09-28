@@ -5,7 +5,7 @@
 
 require 'net/http'
 
-module WiziqVC
+module Wiziq
   class HttpUtil
     attr_reader:request_url,:params_hash
     def initialize(request_url)

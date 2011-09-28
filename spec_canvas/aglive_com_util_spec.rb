@@ -3,9 +3,9 @@ require File.dirname(__FILE__) + '/spec_helper'
 require File.dirname(__FILE__) + '/../lib/aglive_com_util'
 require File.dirname(__FILE__) + '/../app/models/wiziq_conference'
 
-module WiziqVC
+module Wiziq
 
-  include WiziqVC::WiziqApiConstants
+  include Wiziq::ApiConstants
   
   describe AgliveComUtil do
 
@@ -13,14 +13,14 @@ module WiziqVC
       puts 'Now testing api methods...'
       @class_hash = {
               
-        WiziqApiConstants::ParamsSchedule::TITLE => "Wiziq_test_spec_class",
-        WiziqApiConstants::ParamsSchedule::START_DATETIME => Time.now.strftime("%m/%d/%Y %H:%M:%S %p"),
-        WiziqApiConstants::ParamsSchedule::TIMEZONE => "Asia/Kolkata",
-        WiziqApiConstants::ParamsSchedule::DURATION => 60,
-        WiziqApiConstants::ParamsSchedule::DESCRIPTION => " This class is scheduled during test case run.",
-        WiziqApiConstants::ParamsSchedule::COURSE_ID => "123",
-        WiziqApiConstants::ParamsSchedule::PRESENTER_ID => "here_is_test_presenter",
-        WiziqApiConstants::ParamsSchedule::PRESENTER_NAME => "presenter_name_test_runner"
+        ApiConstants::ParamsSchedule::TITLE => "Wiziq_test_spec_class",
+        ApiConstants::ParamsSchedule::START_DATETIME => Time.now.strftime("%m/%d/%Y %H:%M:%S %p"),
+        ApiConstants::ParamsSchedule::TIMEZONE => "Asia/Kolkata",
+        ApiConstants::ParamsSchedule::DURATION => 60,
+        ApiConstants::ParamsSchedule::DESCRIPTION => " This class is scheduled during test case run.",
+        ApiConstants::ParamsSchedule::COURSE_ID => "123",
+        ApiConstants::ParamsSchedule::PRESENTER_ID => "here_is_test_presenter",
+        ApiConstants::ParamsSchedule::PRESENTER_NAME => "presenter_name_test_runner"
       }
       
     end

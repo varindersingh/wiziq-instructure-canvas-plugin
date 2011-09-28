@@ -1,3 +1,0 @@
-
-#require 'uninstall_wiziq'
-

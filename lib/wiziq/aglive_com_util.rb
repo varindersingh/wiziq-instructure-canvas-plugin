@@ -1,9 +1,12 @@
-module WiziqVC
+module Wiziq
   
-  require 'canvas'
-  require 'wiziq'
-
-  include WiziqApiConstants
+  #require 'canvas'
+  #require 'wiziq'
+  
+  require 'wiziq/base_request_builder'
+  require 'wiziq/response_data'
+  require 'wiziq/attendee_util'
+  require 'wiziq/api_constants' 
 
   class AgliveComUtil
   
@@ -42,8 +45,8 @@ module WiziqVC
 
       @api_request.add_params(
         
-        ParamsAddAttendee::CLASS_ID => class_id,
-        ParamsAddAttendee::ATTENDEE_XML => attendee_util.get_attendee_xml
+        ApiConstants::ParamsAddAttendee::CLASS_ID => class_id,
+        ApiConstants::ParamsAddAttendee::ATTENDEE_XML => attendee_util.get_attendee_xml
       )
 
       response_data = ResponseData.new(@api_request.send_api_request)
@@ -54,26 +57,26 @@ module WiziqVC
 
     def get_wiziq_class_status(class_id)
        
-      get_class_info(class_id, [ListColumnOptions::STATUS,ListColumnOptions::TIME_TO_START])
+      get_class_info(class_id, [ApiConstants::ListColumnOptions::STATUS,ApiConstants::ListColumnOptions::TIME_TO_START])
     
     end
 
     def get_class_presenter_info(class_id)
     
-      get_class_info(class_id, [ListColumnOptions::PRESENTER_URL])
+      get_class_info(class_id, [ApiConstants::ListColumnOptions::PRESENTER_URL])
 
     end
 
     def get_class_attendee_info(class_id)
 
-      get_class_info(class_id, [ListColumnOptions::ATTENDEE_URL])
+      get_class_info(class_id, [ApiConstants::ListColumnOptions::ATTENDEE_URL])
 
     end
 
     def get_class_info(class_id,columns=[])
     
-      @api_request.add_param(ParamsList::CLASS_ID,class_id)
-      @api_request.add_param(ParamsList::COLUMNS, columns.join(",")) if !columns.blank?
+      @api_request.add_param(ApiConstants::ParamsList::CLASS_ID,class_id)
+      @api_request.add_param(ApiConstants::ParamsList::COLUMNS, columns.join(",")) if !columns.blank?
       response_data = ResponseData.new(@api_request.send_api_request)
       response_data.optional_params = columns
       response_data.parse_class_info

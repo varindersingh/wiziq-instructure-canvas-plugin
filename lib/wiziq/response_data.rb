@@ -1,7 +1,6 @@
-module WiziqVC
+module Wiziq
   require 'net/http'
   require 'rexml/document'
-
 
   class ResponseData
 
@@ -9,7 +8,7 @@ module WiziqVC
       attr_accessor :api_success
     end
 
-    include WiziqApiConstants::ResponseNodes
+    include ApiConstants::ResponseNodes
 
     attr_reader :doc_root,:api_method,:api_status,:hash
     attr_accessor :optional_params

@@ -1,5 +1,5 @@
 # Author : Varinder Singh
-module WiziqVC
+module Wiziq
 
   class AuthBase
   
