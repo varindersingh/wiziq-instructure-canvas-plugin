@@ -1,17 +1,13 @@
 module Wiziq
-  module ApiConstants
-  
+  module ApiConstants  
     module ParamsAuth
-
       TIMESTAMP = "timestamp"
       ACCESS_KEY = "access_key"
       SIGNATURE = "signature"
-      METHOD = "method"
-    
+      METHOD = "method"  
     end
 
     module ApiMethods
-
       SCHEDULE = "create"
       LIST = "get_data"
       UPDATE = "modify"
@@ -19,11 +15,9 @@ module Wiziq
       TIMEZONE = "get_time_zone"
       ADDATTENDEE = "add_attendees"
       ATTENDEE_REPORT = "get_attendance_report"
-
     end
 
     module ParamsSchedule
-
       CLASS_ID = "class_id"
       TITLE = "title"
       COURSE_ID = "course_id"
@@ -41,12 +35,9 @@ module Wiziq
       ATTENDEE_RET_URL = "attendee_return_url"
       ORG_URL = "organization_url"
       STAT_PING_URL = "status_ping_url"
-
-
     end
 
     module ParamsList
-
       CLASS_ID = "class_id"
       TITLE = "title"
       COURSE_ID = "course_id"
@@ -69,12 +60,9 @@ module Wiziq
       SORT_DIRECTION = "sort_direction"
       ATTENDEE_ID = "attendee_id"
       COLUMNS = "columns"
-
     end
 
-
     module ListColumnOptions
-
       CLASS_ID = "class_id"
       TITLE = "title"
       PRESENTER_URL = "presenter_url"
@@ -98,64 +86,47 @@ module Wiziq
       RECORDING_STATUS = "recording_status"
       STATUS = "status"
       ATTENDANCE_REPORT_STATUS = "attendance_report_status"
-
     end
 
     module ParamsAddAttendee
-
       ATTENDEE_URL = "attendee_url"
       ATTENDEE_XML = "attendee_list"
       ATTENDEE_ID = "attendee_id"
       LANGUAGE = "language"
       CLASS_ID = "class_id"
-
     end
 
     module ClassStatus
-
       UPCOMING = "upcoming"
       EXPIRED = "expired"
-      COMPLETED = "completed"
-    
+      COMPLETED = "completed"    
     end
 
     module ResponseNodes
-
       module FAILURE
         STATUS = "status"
         ERR = "error"
         ERR_MSG = "msg"
         ERR_CODE = "code"
-
       end
 
       module Schedule
-
         PRESENTER = "presenter"
         PRESENTER_URL = "presenter_url"
         PRESENTER_EMAIL = "presenter_email"
         PRESENTER_ID = "presenter_id"
         RECORDING_URL = "recording_url"
         CLASS_ID = "class_id"
-
       end
       module AddAttendee
-
         ATTENDEE_URL = "attendee_url"
         ATTENDEE_ID = "attendee_id"
         LANGUAGE = "language"
-        CLASS_ID = "class_id"
-      
-      end
-   
-
+        CLASS_ID = "class_id"      
+      end   
     end
-
     # Reserved for future implementation
-
     module  ParamsUpdate;end
-
     module ParamsCancel;end      
-
   end
 end

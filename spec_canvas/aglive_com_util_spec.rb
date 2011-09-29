@@ -4,15 +4,11 @@ require File.dirname(__FILE__) + '/../lib/aglive_com_util'
 require File.dirname(__FILE__) + '/../app/models/wiziq_conference'
 
 module Wiziq
-
-  include Wiziq::ApiConstants
-  
+  include Wiziq::ApiConstants  
   describe AgliveComUtil do
-
     before(:all) do    
       puts 'Now testing api methods...'
-      @class_hash = {
-              
+      @class_hash = {              
         ApiConstants::ParamsSchedule::TITLE => "Wiziq_test_spec_class",
         ApiConstants::ParamsSchedule::START_DATETIME => Time.now.strftime("%m/%d/%Y %H:%M:%S %p"),
         ApiConstants::ParamsSchedule::TIMEZONE => "Asia/Kolkata",
@@ -36,8 +32,7 @@ module Wiziq
       puts 'Trying to add attendee to a non existing wiziq class.Expecting invalid class_id parameter(1009)...'
       aglive = AgliveComUtil.new('add_attendees')
       attendee_res = aglive.add_attendee_to_session(0, "test_attendee_id", "test_screen_name")
-      attendee_res["code"].should == 1009
-      
+      attendee_res["code"].should == 1009      
     end
   end
 end

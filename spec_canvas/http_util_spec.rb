@@ -1,10 +1,7 @@
 #  Wiziq Inc
-#  This file is part of wiziq virtual classroom plugin for Canvas
 
 require File.dirname(__FILE__) + '/spec_helper'
-
 module Wiziq
-
   describe HttpUtil do
     before(:all) do
       puts 'Now running http tests...'
@@ -15,7 +12,5 @@ module Wiziq
       util = HttpUtil.new("http://wiziq.com/")
       util.send_http_request rescue false.should == true
     end
-
   end
-
 end
