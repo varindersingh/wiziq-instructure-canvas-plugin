@@ -43,37 +43,34 @@ module Wiziq
     end
 
     def parse_add_attendee_response
-      return parse_error_response if @api_status.eql? %{fail}
-      hash = Hash.new
+      return parse_error_response if @api_status.eql? %{fail}      
       class_id = @doc_root.elements["//" + AddAttendee::CLASS_ID].text
-      hash.store(AddAttendee::CLASS_ID,class_id)
-      hash.store(AddAttendee::ATTENDEE_ID, @doc_root.elements["//" + AddAttendee::ATTENDEE_ID].text)
-      hash.store(AddAttendee::ATTENDEE_URL, @doc_root.elements["//" + AddAttendee::ATTENDEE_URL].text)
-      hash.store(AddAttendee::LANGUAGE , @doc_root.elements["//" + AddAttendee::LANGUAGE].text)
-      hash
+      @hash.store(AddAttendee::CLASS_ID,class_id)
+      @hash.store(AddAttendee::ATTENDEE_ID, @doc_root.elements["//" + AddAttendee::ATTENDEE_ID].text)
+      @hash.store(AddAttendee::ATTENDEE_URL, @doc_root.elements["//" + AddAttendee::ATTENDEE_URL].text)
+      @hash.store(AddAttendee::LANGUAGE , @doc_root.elements["//" + AddAttendee::LANGUAGE].text)
+      @hash
     end
 
-    def parse_error_response
-      hash = Hash.new      
+    def parse_error_response           
       msg = @doc_root.elements["error/@msg"].to_s rescue e
       code = @doc_root.elements["error/@code"].to_s.to_i rescue -2
-      hash.store "code", code
-      hash.store "msg", msg
-      hash      
+      @hash.store "code", code
+      @hash.store "msg", msg
+      @hash
     end
 
     def parse_class_info
-      return parse_error_response if @api_status.eql? %{fail}
-      hash = Hash.new      
+      return parse_error_response if @api_status.eql? %{fail}         
       begin
         @optional_params.each do |node|          
           next if node.type == REXML::Text      
-          hash.store(node,@doc_root.elements["//#{ node }"].text)     
+          @hash.store(node,@doc_root.elements["//#{ node }"].text)
         end
       rescue
         false
       end
-      hash
+      @hash
     end 
   end
 end

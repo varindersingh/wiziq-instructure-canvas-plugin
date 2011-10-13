@@ -4,7 +4,7 @@ module Wiziq
   class PluginConfig   
     def initialize  
       @plugin = Canvas::Plugin.find(:wiziq)
-    end   
+    end
     def api_url
       @plugin.settings[:api_url]
     end

@@ -1,4 +1,3 @@
-require 'web_conference'
 
 class WiziqConference < WebConference
   
@@ -36,7 +35,6 @@ class WiziqConference < WebConference
   end
 
   # This method has been overridden for following reasons.
-
   # 1. To suppress wiziq class status check from API
   #    while scheduling as there is no need to call
   #    API in this case and status must be 'closed'
@@ -81,12 +79,12 @@ class WiziqConference < WebConference
   end
 
   def schedule_wiziq_class
-    tz_info = ActiveSupport::TimeZone.find_tzinfo @user.time_zone
-    @time_zone = tz_info.name
+    tz = @user.time_zone rescue "Mountain Time (US & Canada)"
+    tz_info = ActiveSupport::TimeZone.find_tzinfo tz
+    @time_zone = tz_info.name 
     aglive_com = AgliveComUtil.new(ApiMethods::SCHEDULE)
     self.duration = 300 if self.long_running?
-    wiziq_class = WiziqClassHelper.new
-    wiziq_class.wiziq_conference = self.dup        
+    wiziq_class = WiziqClassHelper.new self.dup
     schedule_response_hash = aglive_com.schedule_class(wiziq_class.get_values_hash)        
     return false if schedule_response_hash["code"] > 0
     @presenter_url  = schedule_response_hash["presenters"][0]["presenter_url"]

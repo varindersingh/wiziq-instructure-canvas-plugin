@@ -2,7 +2,10 @@
 
 module Wiziq  
   class WiziqClassHelper
-    attr_accessor :wiziq_conference
+    attr_reader :wiziq_conference
+    def initialize(wiziq_conference)
+      @wiziq_conference = wiziq_conference
+    end
     @@attributes ||= []  
     consts =  ApiConstants::ParamsSchedule.constants
     consts.each do |attr|

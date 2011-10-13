@@ -27,7 +27,9 @@ module Wiziq
       res = http.start { |htt| htt.request(req)  }                
       case res
       when Net::HTTPSuccess, Net::HTTPRedirection
-        res.body
+       r = res.body
+       Rails::logger.debug "response xml is #{ r }"
+       r
       else
         res.error!
       end
