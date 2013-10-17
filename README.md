@@ -11,7 +11,7 @@ teachers can be engaged in live classes, meetings, and conferences via the web a
 It's a standard rails plugins so it instals using rails plugin script
 
   
-  script/plugin install https://github.com/varindersingh/Wiziq.git
+          script/plugin install https://github.com/varindersingh/Wiziq.git
   
 
 
